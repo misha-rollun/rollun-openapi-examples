@@ -1,0 +1,41 @@
+openapi: 3.0.3
+info:
+  title: Hello world
+  version: 1.0.0
+paths:
+  "/hello":
+    get:
+      parameters:
+        - in: query
+          name: name
+          schema:
+            type: string
+            description: First name
+      responses:
+        200:
+          description: Success response
+          content:
+            application/vnd.rollun+json:
+              schema:
+                $ref: "#/components/schemas/HelloWorldResponse"
+        400:
+          $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/responses/ProblemResponse"
+        500:
+          $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/responses/ProblemResponse"
+        503:
+          $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/responses/ProblemResponse"
+components:
+  schemas:
+    HelloWorldResponse:
+      type: object
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/schemas/RollunResponse"
+      properties:
+        data:
+          $ref: "#/components/schemas/HelloWorld"
+
+    HelloWorld:
+      type: string
+      description: Format "Hello, {name}!"
+      example: "Hello, John!"
+
