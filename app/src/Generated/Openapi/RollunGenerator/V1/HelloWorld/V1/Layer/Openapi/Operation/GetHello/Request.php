@@ -2,20 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Request;
+namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Operation\GetHello;
 
 use Generated\Openapi\RollunGenerator\V1\Common\Layer\Openapi\Request\RequestHasNotBody;
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Parameter\GetHelloParameters;
 
-class GetHelloRequest
+class Request
 {
     public function __construct(
-        private readonly GetHelloParameters $getHelloParameters
+        private readonly Parameters $getHelloParameters
     )
     {
     }
 
-    public function getParameters(): GetHelloParameters
+    public function getParameters(): Parameters
     {
         return $this->getHelloParameters;
     }

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Response;
+namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Operation\GetHello;
 
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Dto\HelloWorldResponse;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Dto\Problem;
 
-class GetHelloResponse
+class Response
 {
     private array $responses = [
         200 => [
