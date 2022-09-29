@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Http\Handler;
+namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Server\Http\Handler\GetHello;
 
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Operation\GetHello\Operation;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class GetHelloHandler implements \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Http\Handler\GetHelloHandler
+class Handler implements \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Http\Handler\GetHello\Handler
 {
     public function __construct(
-        private readonly GetHelloHttpRequestConverter $requestConverter,
+        private readonly RequestConverter $requestConverter,
         private readonly Operation $operation,
-        private readonly GetHelloResponseConverter $responseConverter
+        private readonly ResponseConverter $responseConverter
     ){
     }
 
