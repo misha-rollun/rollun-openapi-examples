@@ -7,10 +7,13 @@ namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Serve
 use Generated\Openapi\RollunGenerator\V1\Common\Layer\Openapi\Validator\ValidationError;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Operation\GetHello\Response;
 
-interface ResponseValidator
+class ResponseValidator
 {
     /**
      * @return ValidationError[]
      */
-    public function validate(Response $response): array;
+    public function validate(Response $response): array
+    {
+        throw new \Exception('Not implemented');
+    }
 }

@@ -7,7 +7,10 @@ namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Serve
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Operation\GetHello\Request;
 use Psr\Http\Message\ServerRequestInterface;
 
-interface RequestConverter
+class RequestConverter
 {
-    public function convert(ServerRequestInterface $request): Request;
+    public function convert(ServerRequestInterface $request): Request
+    {
+        throw new \Exception('Not implemented');
+    }
 }
