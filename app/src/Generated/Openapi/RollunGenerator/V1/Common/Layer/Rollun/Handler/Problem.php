@@ -6,29 +6,19 @@ namespace Generated\Openapi\RollunGenerator\V1\Common\Layer\Rollun\Handler;
 
 use InvalidArgumentException;
 
-class ProblemException extends \Exception
+class Problem
 {
-    private array $data;
-    
     public function __construct(
-        string $title,
-        string $detail,
-        int $status,
-        string $type,
-        string $instance,
-        array $context
+        private string $title,
+        private string $detail,
+        private int $status,
+        private string $type,
+        private string $instance,
+        private array $context
     )
     {
-        $this->validateStatus($status);
-        parent::__construct("$title: $detail", $status);
-        $this->data = array_merge([
-            'title' => $title,
-            'detail' => $detail,
-            'status' => $status,
-            'type' => $type,
-            'instance' => $instance,
-        ], $context);
-    }    
+        self::validateStatus($status);
+    }
 
     private static function validateStatus(int $status): void
     {
@@ -42,7 +32,7 @@ class ProblemException extends \Exception
      */
     public function getTitle(): string
     {
-        return $this->data['title'];
+        return $this->title;
     }
 
     /**
@@ -50,7 +40,7 @@ class ProblemException extends \Exception
      */
     public function getDetail(): string
     {
-        return $this->data['detail'];
+        return $this->detail;
     }
 
     /**
@@ -58,7 +48,7 @@ class ProblemException extends \Exception
      */
     public function getStatus(): int
     {
-        return $this->data['status'];
+        return $this->status;
     }
 
     /**
@@ -66,7 +56,7 @@ class ProblemException extends \Exception
      */
     public function getType(): string
     {
-        return $this->data['type'];
+        return $this->type;
     }
 
     /**
@@ -74,11 +64,14 @@ class ProblemException extends \Exception
      */
     public function getInstance(): string
     {
-        return $this->data['instance'];
+        return $this->instance;
     }
 
-    public function getData(): array
+    /**
+     * @return array
+     */
+    public function getContext(): array
     {
-        return $this->data;
+        return $this->context;
     }
 }
