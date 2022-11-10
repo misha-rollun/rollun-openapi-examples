@@ -37,9 +37,10 @@ class Handler implements \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Lay
         }
         $openapiRequest = $this->requestConverter->convert($request);
         $openapiResponse = $this->operation->perform($openapiRequest);
-        if ($errors = $this->responseValidator->validate($openapiResponse)) {
+        $httpResponse = $this->responseConverter->convert($openapiResponse);
+        if ($errors = $this->responseValidator->validate($httpResponse)) {
             return $this->errorHandler->handleValidationError($errors);
         }
-        return $this->responseConverter->convert($openapiResponse);
+        return $httpResponse;
     }
 }
