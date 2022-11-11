@@ -15,7 +15,6 @@ class Operation implements \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\L
 
     public function __construct(
         private RequestConverter $requestConverter,
-        private RequestValidator $requestValidator,
         private Handler $handler,
         private ResponseConverter $responseConverter,
         private ResponseValidator $responseValidator,
@@ -29,9 +28,6 @@ class Operation implements \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\L
             throw new \RuntimeException('Setup at least one server.');
         }
         $httpRequest = $this->requestConverter->convert($request, $this->serverUrl . $this->path);
-        if ($errors = $this->requestValidator->validate($httpRequest)) {
-            return $this->errorHandler->handleValidationError($errors);
-        }
         $response = $this->handler->handle($httpRequest);
         if ($errors = $this->responseValidator->validate($response)) {
             return $this->errorHandler->handleValidationError($errors);
