@@ -14,6 +14,7 @@ class ResponseValidator
      */
     public function validate(ResponseInterface $response): array
     {
+        // validate using \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Operation\GetHello\OperationSchema\OperationSchema::getSchema()
         throw new \Exception('Not implemented');
     }
 }

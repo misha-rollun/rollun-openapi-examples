@@ -14,6 +14,7 @@ class RequestValidator
      */
     public function validate(ServerRequestInterface $request): array
     {
+        // validate using \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Operation\GetHello\OperationSchema\OperationSchema::getSchema()
         throw new \Exception('Not implemented');
     }
 }
