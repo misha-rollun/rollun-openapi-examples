@@ -24,9 +24,6 @@ class Operation implements \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\L
 
     public function perform(Request $request): Response
     {
-        if (empty($this->serverUrls)) {
-            throw new \RuntimeException('Setup at least one server.');
-        }
         $httpRequest = $this->requestConverter->convert($request, $this->serverUrl . $this->path);
         $response = $this->handler->handle($httpRequest);
         if ($errors = $this->responseValidator->validate($response)) {
