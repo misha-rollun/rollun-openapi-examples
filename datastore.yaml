@@ -1,0 +1,53 @@
+openapi: 3.0.3
+info:
+  title: Datastore
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/openapi/datastore/v1
+x-servers:
+  - name: Localhost
+    urls:
+      - http://localhost:8080/openapi/datastore/v1
+paths:
+  "/records":
+    get:
+      operationId: query
+      x-rql:
+        limit:
+          limit:
+            default: 20
+            min: 0
+          offset:
+            default: 0
+            min: 0
+      responses:
+        200:
+          description: Success response
+          content:
+            application/vnd.rollun+json:
+              schema:
+                $ref: "#/components/schemas/RecordListResponse"
+        400:
+          $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/responses/ProblemResponse"
+        500:
+          $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/responses/ProblemResponse"
+        503:
+          $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/responses/ProblemResponse"
+components:
+  schemas:
+    RecordListResponse:
+      type: object
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/schemas/RollunResponse"
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Record"
+
+    Record:
+      type: object
+      properties:
+        id:
+          type: string
+
