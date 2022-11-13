@@ -7,9 +7,9 @@ namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Dto;
 class Warning
 {
     public function __construct(
-        private readonly string $type,
-        private readonly string $title,
-        private readonly string $detail
+        public readonly string $type,
+        public readonly string $title,
+        public readonly string $detail
     )
     {
     }
