@@ -14,15 +14,13 @@ class Parameters
     ){
     }
 
-    public function hasQueryParameter(string $name): bool
+    public function hasQueryParameter(QueryParameter $parameter): bool
     {
-        return $this->parameters->hasQueryParameter($name);
+        return $this->parameters->hasQueryParameter($parameter->value);
     }
 
-    public function getQueryParameter(string $name): Parameter
+    public function getQueryParameter(QueryParameter $parameter): Parameter
     {
-        return $this->parameters->getQueryParameter($name);
+        return $this->parameters->getQueryParameter($parameter->value);
     }
-
-    // same for headers, path and cookie
 }
