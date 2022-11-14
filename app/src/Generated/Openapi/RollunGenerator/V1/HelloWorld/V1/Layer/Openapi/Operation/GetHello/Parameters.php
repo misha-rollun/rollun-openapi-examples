@@ -10,7 +10,8 @@ use Generated\Openapi\RollunGenerator\V1\Common\Layer\Openapi\Parameter\Paramete
 class Parameters
 {
     public function __construct(
-        private readonly ParametersCollection $parameters
+        private readonly ParametersCollection $parameters,
+        private readonly string $rawQuery
     ){
     }
 
@@ -22,5 +23,10 @@ class Parameters
     public function getQueryParameter(QueryParameter $parameter): Parameter
     {
         return $this->parameters->getQueryParameter($parameter->value);
+    }
+
+    public function getRawQuery(): string
+    {
+        return $this->rawQuery;
     }
 }
