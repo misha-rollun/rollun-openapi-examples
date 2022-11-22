@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Handler\GetHello;
 
 use Generated\Openapi\RollunGenerator\V1\Common\Layer\Rollun\Handler\ClientInfo;
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Dto\GetHelloQuery;
 
 class Query
 {
     public function __construct(
         private readonly ClientInfo $clientInfo,
-        private readonly QueryString $queryString
+        private readonly GetHelloQuery $query
     ){
     }
 
@@ -19,8 +20,8 @@ class Query
         return $this->clientInfo;
     }
 
-    public function getQueryString(): QueryString
+    public function getQuery(): GetHelloQuery
     {
-        return $this->queryString;
+        return $this->query;
     }
 }
