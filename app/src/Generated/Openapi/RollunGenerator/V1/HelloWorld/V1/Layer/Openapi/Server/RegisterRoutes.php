@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Http\Server;
+namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Server;
 
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Http\Common\Handler\GetHello\Handler;
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Server\Http\Handler\GetHello\Handler;
 
 abstract class RegisterRoutes
 {

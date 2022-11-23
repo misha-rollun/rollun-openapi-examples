@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Server\Http;
+namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Server\Openapi;
 
 class RegisterRoutes extends \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Server\RegisterRoutes
 {
     public function register(): void
     {
-        throw new \Exception('Not implemented');
+        // TODO: register in mezzio router
     }
 }
