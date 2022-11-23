@@ -8,6 +8,9 @@ use Generated\Openapi\RollunGenerator\V1\Common\Layer\Openapi\Validator\Validati
 use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
+/**
+ * Error handler створюється для кожної операції, тому що в маніфесті різні операції можуть мати різний формат помилки
+ */
 interface ErrorHandler
 {
     public function handleException(Throwable $e): ResponseInterface;
