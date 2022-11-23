@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Client\Handler\GetHello;
 
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Client\Operation\GetHello\Operation;
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Handler\GetHello\Query;
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Handler\GetHello\Result;
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Handler\GetHello\Query;
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Handler\GetHello\Result;
 
-abstract class AbstractHandler implements \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Handler\GetHello\Handler
+abstract class AbstractHandler implements \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Handler\GetHello\Handler
 {
     public function __construct(
         private RequestConverter $requestConverter,

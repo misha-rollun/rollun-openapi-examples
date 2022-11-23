@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Http\Handler\GetHello;
+namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Http\Common\Handler\GetHello;
 
 use Psr\Http\Server\RequestHandlerInterface;
 

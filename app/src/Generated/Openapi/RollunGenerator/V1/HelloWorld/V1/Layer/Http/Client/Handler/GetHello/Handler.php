@@ -7,7 +7,7 @@ namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Http\Client\H
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class Handler implements \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Http\Handler\GetHello\Handler
+class Handler implements \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Http\Common\Handler\GetHello\Handler
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {

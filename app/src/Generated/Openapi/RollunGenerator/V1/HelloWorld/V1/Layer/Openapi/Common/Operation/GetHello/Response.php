@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Operation\GetHello;
+namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Operation\GetHello;
 
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Dto\HelloWorldResponse;
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Dto\Problem;
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Dto\HelloWorldResponse;
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Dto\Problem;
 
 class Response
 {
