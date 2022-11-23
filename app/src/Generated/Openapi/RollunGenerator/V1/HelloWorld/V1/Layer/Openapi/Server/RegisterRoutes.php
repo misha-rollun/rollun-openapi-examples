@@ -10,7 +10,7 @@ abstract class RegisterRoutes
 {
     protected array $routes = [
         [
-            'path' => 'opeanapi/hello-world/v1/hello',
+            'path' => '/opeanapi/hello-world/v1/hello',
             'method' => 'GET',
             'handler' => Handler::class
         ]
