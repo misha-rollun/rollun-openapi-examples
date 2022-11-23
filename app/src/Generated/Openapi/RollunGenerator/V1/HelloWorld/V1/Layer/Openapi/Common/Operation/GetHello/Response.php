@@ -48,4 +48,9 @@ class Response
     {
         // validate response is in $this->response
     }
+
+    public function getContentType(): string
+    {
+        return $this->headers['Content-Type'];
+    }
 }
