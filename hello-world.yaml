@@ -26,11 +26,33 @@ paths:
               schema:
                 $ref: "#/components/schemas/HelloWorldResponse"
         400:
-          $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/responses/ProblemResponse"
+          description: Bad request
+          content:
+            application/vnd.rollun-error+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/schemas/Error"
+                properties:
+                  problem:
+                    oneOf:
+                      - $ref: "#/components/schemas/InputValidationProblem"
         500:
-          $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/responses/ProblemResponse"
+          description: Internal Server Error
+          content:
+            application/vnd.rollun-error+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/schemas/Error"
         503:
-          $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/responses/ProblemResponse"
+          description: Service Unavailable
+          content:
+            application/vnd.rollun-error+json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/schemas/Error"
 components:
   schemas:
     HelloWorldResponse:
@@ -45,4 +67,30 @@ components:
       type: string
       description: Format "Hello, {name}!"
       example: "Hello, John!"
+
+    InputValidationProblem:
+      type: object
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/schemas/Problem"
+      properties:
+        issues:
+          type: array
+          items:
+            $ref: "#/components/schemas/InputValidationIssue"
+    InputValidationIssue:
+      type: object
+      properties:
+        type:
+          type: string
+        in:
+          type: string
+          enum:
+            - body
+            - header
+            - path
+            - query
+        name:
+          type: string
+        detail:
+          type: string
 
