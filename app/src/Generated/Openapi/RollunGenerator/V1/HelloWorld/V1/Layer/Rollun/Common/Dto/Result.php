@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Handler\GetHello;
+namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto;
 
+use Generated\Openapi\RollunGenerator\V1\Common\Layer\Rollun\Handler\Problem;
 use Generated\Openapi\RollunGenerator\V1\Common\Layer\Rollun\Handler\State;
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto\Error;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto\HelloWorldResponse;
 
 class Result
@@ -13,16 +13,14 @@ class Result
     public function __construct(
         private readonly State $state,
         private readonly ?HelloWorldResponse $result = null,
-        // в type hint потрапляє responseBody з 4хх та 5хх помилок. Якщо таких тіл декілька різних, то можна викидувати
-        // помилку генерації
-        private readonly ?Error $error = null
+        private readonly ?Problem $problem = null
     )
     {
         if ($this->state->isPending()) {
             throw new \InvalidArgumentException('This operation is not async.');
         } elseif ($this->state->isFulfilled() && $this->result === null) {
             throw new \InvalidArgumentException('Result cannot be null when state is fulfilled.');
-        } elseif ($this->state->isRejected() && $this->error === null) {
+        } elseif ($this->state->isRejected() && $this->problem === null) {
             throw new \InvalidArgumentException('Problem cannot be null when state is rejected.');
         }
     }
@@ -35,9 +33,10 @@ class Result
         return $this->result;
     }
 
-    public function getError(): ?Error
+    // Результат завжди Problem. Якщо в операції для 4хх або 5хх вказано інший медіа тип, то помилка
+    public function getProblem(): ?Problem
     {
-        return $this->error;
+        return $this->problem;
     }
 
     public function getLastState(): State

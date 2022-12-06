@@ -4,18 +4,14 @@ declare(strict_types=1);
 
 namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto;
 
-use ReflectionProperty;
-
-class HelloWorldResponse
+class Error
 {
-    public string $data;
-    public object $metadata;
-    public object $warnings;
+    public Problem $problem;
 
-    public function hasMetadata(): bool
-    {
-        return $this->isInitialized('metadata');
-    }
+    /**
+     * @var Warning[]
+     */
+    public array $warnings;
 
     public function hasWarnings(): bool
     {
