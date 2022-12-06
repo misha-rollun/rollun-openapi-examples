@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Operation\GetHello;
 
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Dto\GetHelloHeaders;
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Dto\GetHelloResponseHeaders;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Dto\HelloWorldResponse;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Dto\Problem;
 
@@ -15,5 +15,5 @@ class Response
      */
     public HelloWorldResponse|Problem $body;
     public int $statusCode;
-    public GetHelloHeaders $headers;
+    public GetHelloResponseHeaders $headers;
 }
