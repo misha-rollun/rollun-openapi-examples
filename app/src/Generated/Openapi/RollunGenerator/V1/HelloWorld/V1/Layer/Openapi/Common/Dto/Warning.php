@@ -6,11 +6,7 @@ namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Commo
 
 class Warning
 {
-    public function __construct(
-        public readonly string $type,
-        public readonly string $title,
-        public readonly string $detail
-    )
-    {
-    }
+    public readonly string $type;
+    public readonly string $title;
+    public readonly string $detail;
 }

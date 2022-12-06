@@ -6,9 +6,5 @@ namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Commo
 
 class GetHelloQueryParameters
 {
-    public function __construct(
-        public readonly string $name
-    )
-    {
-    }
+    public readonly string $name;
 }
