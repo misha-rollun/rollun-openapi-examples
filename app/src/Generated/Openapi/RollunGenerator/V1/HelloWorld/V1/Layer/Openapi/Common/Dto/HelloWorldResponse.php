@@ -8,9 +8,9 @@ use ReflectionProperty;
 
 class HelloWorldResponse
 {
-    public readonly string $data;
-    public readonly object $metadata;
-    public readonly object $warnings;
+    public string $data;
+    public object $metadata;
+    public object $warnings;
 
     public function hasMetadata(): bool
     {

@@ -6,12 +6,12 @@ namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Commo
 
 class Error
 {
-    public readonly Problem $problem;
+    public Problem $problem;
 
     /**
      * @var Warning[]
      */
-    public readonly array $warnings;
+    public array $warnings;
 
     public function hasWarnings(): bool
     {
