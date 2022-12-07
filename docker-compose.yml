@@ -1,10 +1,10 @@
 services:
   nginx:
     build:
-      context: docker/nginx
+      context: app/docker/nginx
       dockerfile: Dockerfile
     volumes:
-      - ./:/var/www/app
+      - ./app:/var/www/app
     ports:
       - 8080:80
     depends_on:
@@ -12,5 +12,7 @@ services:
   php-fpm:
     image: maxrollundev/php-fpm-8.0
     volumes:
-      - ./:/var/www/app
+      - ./app:/var/www/app
     working_dir: /var/www/app
+    environment:
+      PHP_IDE_CONFIG: serverName=php-fpm
