@@ -12,12 +12,12 @@ use Throwable;
 class Handler implements \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Http\Common\Handler\GetHello\Handler
 {
     public function __construct(
-        private readonly RequestValidator $requestValidator,
-        private readonly RequestConverter $requestConverter,
-        private readonly Operation $operation,
-        private readonly ResponseValidator $responseValidator,
-        private readonly ResponseConverter $responseConverter,
-        private readonly ErrorHandler $errorHandler
+        private RequestValidator $requestValidator,
+        private RequestConverter $requestConverter,
+        private Operation $operation,
+        private ResponseValidator $responseValidator,
+        private ResponseConverter $responseConverter,
+        private ErrorHandler $errorHandler
     ){
     }
 

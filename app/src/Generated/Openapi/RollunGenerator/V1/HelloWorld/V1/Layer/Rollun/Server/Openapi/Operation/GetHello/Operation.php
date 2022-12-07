@@ -11,9 +11,9 @@ use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Handl
 class Operation implements \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Operation\GetHello\Operation
 {
     public function __construct(
-        private readonly RequestConverter $requestConverter,
-        private readonly Handler $handler,
-        private readonly ResultConverter $resultConverter
+        private RequestConverter $requestConverter,
+        private Handler $handler,
+        private ResultConverter $resultConverter
     )
     {
     }

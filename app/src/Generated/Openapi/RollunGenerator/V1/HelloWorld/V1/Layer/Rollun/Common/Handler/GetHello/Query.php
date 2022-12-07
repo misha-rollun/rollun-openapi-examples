@@ -10,8 +10,8 @@ use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto\G
 class Query
 {
     public function __construct(
-        private readonly ClientInfo $clientInfo,
-        private readonly GetHelloQuery $query
+        private ClientInfo $clientInfo,
+        private GetHelloQuery $query
     ){
     }
 

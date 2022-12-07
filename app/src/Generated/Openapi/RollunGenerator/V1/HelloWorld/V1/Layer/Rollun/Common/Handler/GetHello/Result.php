@@ -11,11 +11,11 @@ use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto\H
 class Result
 {
     public function __construct(
-        private readonly Status $state,
-        private readonly ?HelloWorldResponse $result = null,
+        private Status $state,
+        private ?HelloWorldResponse $result = null,
         // в type hint потрапляє responseBody з 4хх та 5хх помилок. Якщо таких тіл декілька різних, то можна викидувати
         // помилку генерації
-        private readonly ?Error $error = null
+        private ?Error $error = null
     )
     {
         if ($this->state->isPending()) {
