@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Handler\GetHello;
 
-use Generated\Openapi\RollunGenerator\V1\Common\Layer\Rollun\Handler\State;
+use Generated\Openapi\RollunGenerator\V1\Common\Layer\Rollun\Handler\Status;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto\Error;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto\HelloWorldResponse;
 
@@ -18,11 +18,11 @@ class ResultFactory
 {
     public function createFulfilled(HelloWorldResponse $response): Result
     {
-        return new Result(State::fulfilled, $response);
+        return new Result(Status::fulfilled, $response);
     }
 
     public function createRejected(Error $error): Result
     {
-        return new Result(State::rejected, null, $error);
+        return new Result(Status::rejected, null, $error);
     }
 }

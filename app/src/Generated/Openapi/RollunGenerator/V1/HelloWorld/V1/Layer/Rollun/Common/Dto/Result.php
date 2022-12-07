@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto;
 
 use Generated\Openapi\RollunGenerator\V1\Common\Layer\Rollun\Handler\Problem;
-use Generated\Openapi\RollunGenerator\V1\Common\Layer\Rollun\Handler\State;
+use Generated\Openapi\RollunGenerator\V1\Common\Layer\Rollun\Handler\Status;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto\HelloWorldResponse;
 
 class Result
 {
     public function __construct(
-        private readonly State $state,
+        private readonly Status $state,
         private readonly ?HelloWorldResponse $result = null,
         private readonly ?Problem $problem = null
     )
@@ -39,12 +39,12 @@ class Result
         return $this->problem;
     }
 
-    public function getLastState(): State
+    public function getLastState(): Status
     {
         return $this->state;
     }
 
-    public function checkCurrentState(): State
+    public function checkCurrentState(): Status
     {
         // Для асинхронних операцій буде інша реалізація.
         return $this->state;

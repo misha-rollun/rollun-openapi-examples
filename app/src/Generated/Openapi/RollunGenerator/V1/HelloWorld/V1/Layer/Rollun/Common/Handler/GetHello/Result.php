@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Handler\GetHello;
 
-use Generated\Openapi\RollunGenerator\V1\Common\Layer\Rollun\Handler\State;
+use Generated\Openapi\RollunGenerator\V1\Common\Layer\Rollun\Handler\Status;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto\Error;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto\HelloWorldResponse;
 
 class Result
 {
     public function __construct(
-        private readonly State $state,
+        private readonly Status $state,
         private readonly ?HelloWorldResponse $result = null,
         // в type hint потрапляє responseBody з 4хх та 5хх помилок. Якщо таких тіл декілька різних, то можна викидувати
         // помилку генерації
@@ -40,12 +40,12 @@ class Result
         return $this->error;
     }
 
-    public function getLastState(): State
+    public function getLastStatus(): Status
     {
         return $this->state;
     }
 
-    public function checkCurrentState(): State
+    public function checkCurrentStatus(): Status
     {
         // Для асинхронних операцій буде інша реалізація.
         return $this->state;

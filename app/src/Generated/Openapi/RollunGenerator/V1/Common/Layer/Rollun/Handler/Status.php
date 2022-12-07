@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Generated\Openapi\RollunGenerator\V1\Common\Layer\Rollun\Handler;
 
-enum State: string
+enum Status: string
 {
     case pending = 'pending';
     case fulfilled = 'fulfilled';
@@ -12,16 +12,16 @@ enum State: string
 
     public function isPending(): bool
     {
-        return $this->value === State::pending->value;
+        return $this->value === Status::pending->value;
     }
 
     public function isFulfilled(): bool
     {
-        return $this->value === State::fulfilled->value;
+        return $this->value === Status::fulfilled->value;
     }
 
     public function isRejected(): bool
     {
-        return $this->value === State::rejected->value;
+        return $this->value === Status::rejected->value;
     }
 }
