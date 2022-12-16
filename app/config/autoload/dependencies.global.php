@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
+
 return [
     // Provides application-wide services.
     // We recommend using fully-qualified class names whenever possible as
@@ -21,6 +23,9 @@ return [
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories' => [
             // Fully\Qualified\ClassName::class => Fully\Qualified\FactoryName::class,
+        ],
+        'abstract_factories' => [
+            ReflectionBasedAbstractFactory::class,
         ],
     ],
 ];

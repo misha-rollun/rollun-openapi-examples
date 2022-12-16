@@ -6,6 +6,7 @@ namespace App\Handler;
 
 use Chubbyphp\Container\MinimalContainer;
 use DI\Container as PHPDIContainer;
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Dto\GetHelloQueryParameters;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\ServiceManager\ServiceManager;
@@ -43,6 +44,17 @@ class HomePageHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        $from = new GetHelloQueryParameters();
+        $reflection = new \ReflectionClass($from);
+        $properties = $reflection->getProperties(\ReflectionProperty::IS_PUBLIC);
+        $result = [];
+        foreach ($properties as $property) {
+            $propertyName = $property->getName();
+            var_dump($propertyName, $property->getType()->getName());
+//            $result[$propertyName] = $from->{$propertyName};
+        }
+        die;
+
         $data = [];
 
         switch ($this->containerName) {

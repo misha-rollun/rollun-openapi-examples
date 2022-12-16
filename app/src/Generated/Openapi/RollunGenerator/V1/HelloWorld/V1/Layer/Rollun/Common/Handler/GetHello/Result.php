@@ -5,49 +5,51 @@ declare(strict_types=1);
 namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Handler\GetHello;
 
 use Generated\Openapi\RollunGenerator\V1\Common\Layer\Rollun\Handler\Status;
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto\Error;
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto\HelloWorldResponse;
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Dto\Error;
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Dto\HelloWorldResponse;
 
 class Result
 {
     public function __construct(
-        private Status $state,
+        private Status $status,
         private ?HelloWorldResponse $result = null,
         // в type hint потрапляє responseBody з 4хх та 5хх помилок. Якщо таких тіл декілька різних, то можна викидувати
         // помилку генерації
-        private ?Error $error = null
+        private ?Error $error = null,
+        private ?string $taskId = null
     )
     {
-        if ($this->state->isPending()) {
-            throw new \InvalidArgumentException('This operation is not async.');
-        } elseif ($this->state->isFulfilled() && $this->result === null) {
-            throw new \InvalidArgumentException('Result cannot be null when state is fulfilled.');
-        } elseif ($this->state->isRejected() && $this->error === null) {
-            throw new \InvalidArgumentException('Problem cannot be null when state is rejected.');
+        if ($this->status->isPending() && $this->taskId === null) {
+            throw new \InvalidArgumentException('TaskId cannot be null when status is pending.');
+        } elseif ($this->status->isFulfilled() && $this->result === null) {
+            throw new \InvalidArgumentException('Result cannot be null when status is fulfilled.');
+        } elseif ($this->status->isRejected() && $this->error === null) {
+            throw new \InvalidArgumentException('Problem cannot be null when status is rejected.');
         }
     }
 
     // Результатом є схема з 200 або 201(якщо немає 200) статус коду
     // Якщо в операції немає ні 200, а ні 201 статус коду - помилка
     // Якщо у статус коду декілька схем під різними медіа типами - то перерахувати декілька варіантів
-    public function getResult(): ?HelloWorldResponse
+    public function getResult(): HelloWorldResponse
     {
         return $this->result;
     }
 
-    public function getError(): ?Error
+    // Результатом є схема з 4хх та 5хх статус кодів
+    // У всіх 4хх та 5хх статус кодів має бути одна й та сама схема, якщо це не так то можна кидати помилку генерації
+    public function getError(): Error
     {
         return $this->error;
     }
 
-    public function getLastStatus(): Status
+    public function getTaskId(): string
     {
-        return $this->state;
+        return $this->taskId;
     }
 
-    public function checkCurrentStatus(): Status
+    public function getStatus(): Status
     {
-        // Для асинхронних операцій буде інша реалізація.
-        return $this->state;
+        return $this->status;
     }
 }

@@ -26,6 +26,7 @@ class Handler implements \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Lay
         try {
             return $this->tryToHandle($request);
         } catch (Throwable $e) {
+            echo "<pre>"; var_dump($e);die;
             return $this->errorHandler->handleException($e);
         }
     }
