@@ -6,7 +6,7 @@ namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Framework\Laminas\L
 
 use Mezzio\Application;
 
-class RegisterRoutes extends \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Server\RegisterRoutes
+class RegisterRoutes extends \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Infrastructure\Openapi\Server\RegisterRoutes
 {
     public function __construct(private Application $application)
     {
