@@ -6,14 +6,13 @@ namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Server
 
 use Generated\Openapi\RollunGenerator\V1\Common\Layer\Rollun\Handler\ClientInfo;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Operation\GetHello\Request;
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Dto\GetHelloQuery;
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Handler\GetHello\Query;
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Rollun\Common\Handler\GetHello\Request as RollunRequest;
 
 class RequestConverter
 {
-    public function convert(Request $request): Query
+    public function convert(Request $request): RollunRequest
     {
-        $query = new Query();
+        $query = new RollunRequest();
         $query->clientInfo = $this->createClientInfo($request);
         $query->query = $request->queryParameters;
         return $query;
