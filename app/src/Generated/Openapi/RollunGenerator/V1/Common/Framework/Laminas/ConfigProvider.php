@@ -4,36 +4,13 @@ declare(strict_types=1);
 
 namespace Generated\Openapi\RollunGenerator\V1\Common\Framework\Laminas;
 
-use Generated\Openapi\RollunGenerator\V1\Common\Framework\Laminas\Utils\Serializer\Factory\DenormalizerFactory;
-use Generated\Openapi\RollunGenerator\V1\Common\Framework\Laminas\Utils\Serializer\Factory\SerializerFactory;
-use Generated\Openapi\RollunGenerator\V1\Common\Utils\Serializer\Denormalizer;
-use Generated\Openapi\RollunGenerator\V1\Common\Utils\Serializer\Serializer;
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Dto\GetHelloQueryParameters;
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Layer\Openapi\Common\Dto\GetHelloRequestHeaders;
+use Laminas\ConfigAggregator\PhpFileProvider;
 
-class ConfigProvider
+class ConfigProvider extends PhpFileProvider
 {
-    public function __invoke()
+    public function __construct($pattern = null)
     {
-        return [
-            'dependencies' => [
-                'factories' => [
-                    Denormalizer::class => DenormalizerFactory::class,
-                    Serializer::class => SerializerFactory::class
-                ],
-                'aliases' => [
-                ],
-            ],
-            'serializer' => [
-                'property_mapping' => [
-                    GetHelloQueryParameters::class => [
-                        'name' => 'name'
-                    ],
-                    GetHelloRequestHeaders::class => [
-                        'contentType' => 'content-type'
-                    ]
-                ]
-            ]
-        ];
+        $pattern = $pattern ?? realpath(__DIR__) . '/config/{{,*.}global,{,*.}local}.php';
+        parent::__construct($pattern);
     }
 }
