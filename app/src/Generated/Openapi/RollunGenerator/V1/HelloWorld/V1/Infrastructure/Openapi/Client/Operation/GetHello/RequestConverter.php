@@ -24,7 +24,7 @@ class RequestConverter
         $headers = $this->serializer->normalize($request->headers);
         $queryParamsArray = $this->serializer->normalize($request->queryParameters);
         $queryParamsString = $this->querySerializer->serialize($queryParamsArray, 'form', false);
-        $fullUrl = $url . $queryParamsString;
+        $fullUrl = $url . '?' . $queryParamsString;
         return new ServerRequest([], [], $fullUrl,'GET', 'php://input', $headers);
     }
 }
