@@ -18,14 +18,4 @@ return [
         'aliases' => [
         ],
     ],
-    'serializer' => [
-        'property_mapping' => [
-            GetHelloQueryParameters::class => [
-                'name' => 'name'
-            ],
-            GetHelloRequestHeaders::class => [
-                'contentType' => 'content-type'
-            ]
-        ]
-    ]
 ];

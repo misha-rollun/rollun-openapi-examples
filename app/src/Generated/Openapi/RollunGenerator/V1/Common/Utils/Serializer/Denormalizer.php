@@ -8,7 +8,7 @@ class Denormalizer
 {
     private string $toObject;
 
-    public function __construct(private array $propertiesMapping)
+    public function __construct(private array $metadata)
     {
     }
 
@@ -36,7 +36,7 @@ class Denormalizer
             $result = new $this->toObject();
             foreach ($properties as $property) {
                 $propertyName = $property->getName();
-                $fromPropertyName = $this->propertiesMapping[$this->toObject][$propertyName] ?? $propertyName;
+                $fromPropertyName = $this->metadata[$this->toObject]['properties'][$propertyName]['name'] ?? $propertyName;
                 if (isset($from[$fromPropertyName])) {
                     $result->{$propertyName} = $from[$fromPropertyName];
                 }

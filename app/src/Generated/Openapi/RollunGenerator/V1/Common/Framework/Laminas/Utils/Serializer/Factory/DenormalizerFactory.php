@@ -12,7 +12,7 @@ class DenormalizerFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
-        $propertiesMapping = $container->get('config')['serializer']['property_mapping'];
+        $propertiesMapping = $container->get('config')['serializer']['metadata'];
         return new Denormalizer($propertiesMapping);
     }
 }
