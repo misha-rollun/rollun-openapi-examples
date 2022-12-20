@@ -6,14 +6,14 @@ namespace Generated\Openapi\RollunGenerator\V1\Common\Utils\Query\Serializer;
 
 class QuerySerializer
 {
-    public function serialize(array $queryParams, string $format, bool $explode): string
+    public function serialize(array $queryParams, string $style, bool $explode): string
     {
         // TODO: https://swagger.io/docs/specification/serialization#query
         // На перший час можна зробити підтримку лише style:form, explode: false
         throw new \Exception('Not implemented');
     }
 
-    public function deserialize(string $queryParams, string $format, bool $explode): array
+    public function deserialize(string $queryParams, string $style, bool $explode): array
     {
         // TODO: зеркально методу serialize
         throw new \Exception('Not implemented');

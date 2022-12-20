@@ -48,7 +48,7 @@ class Serializer
         return $clone;
     }
 
-    public function denormalize(array $from)
+    public function denormalize(array $from): object
     {
         if ($this->toObject) {
             return $this->denormalizer->toObject($this->toObject)->denormalize($from);
