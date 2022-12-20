@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Infrastructure\Rollun\Common\Handler\GetHello;
 
 use Generated\Openapi\RollunGenerator\V1\Common\Infrastructure\Rollun\Handler\Status;
+use Generated\Openapi\RollunGenerator\V1\Common\Infrastructure\Rollun\Handler\TaskInfo;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Infrastructure\Openapi\Common\Dto\Error;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Infrastructure\Openapi\Common\Dto\HelloWorldResponse;
 
@@ -16,10 +17,10 @@ class Result
         // в type hint потрапляє responseBody з 4хх та 5хх помилок. Якщо таких тіл декілька різних, то можна викидувати
         // помилку генерації
         private ?Error $error = null,
-        private ?string $taskId = null
+        private ?TaskInfo $taskInfo = null
     )
     {
-        if ($this->status->isPending() && $this->taskId === null) {
+        if ($this->status->isPending() && $this->taskInfo === null) {
             throw new \InvalidArgumentException('TaskId cannot be null when status is pending.');
         } elseif ($this->status->isFulfilled() && $this->result === null) {
             throw new \InvalidArgumentException('Result cannot be null when status is fulfilled.');
@@ -43,9 +44,9 @@ class Result
         return $this->error;
     }
 
-    public function getTaskId(): string
+    public function getTaskInfo(): TaskInfo
     {
-        return $this->taskId;
+        return $this->taskInfo;
     }
 
     public function getStatus(): Status
