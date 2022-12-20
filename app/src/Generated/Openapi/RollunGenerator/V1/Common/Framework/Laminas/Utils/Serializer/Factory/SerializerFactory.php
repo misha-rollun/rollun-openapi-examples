@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Generated\Openapi\RollunGenerator\V1\Common\Framework\Laminas\Utils\Serializer\Factory;
 
+use Generated\Openapi\RollunGenerator\V1\Common\Utils\Serializer\Denormalizer;
 use Generated\Openapi\RollunGenerator\V1\Common\Utils\Serializer\JsonEncoder;
 use Generated\Openapi\RollunGenerator\V1\Common\Utils\Serializer\Normalizer;
 use Generated\Openapi\RollunGenerator\V1\Common\Utils\Serializer\Serializer;
@@ -16,7 +17,8 @@ class SerializerFactory implements FactoryInterface
     {
         return new Serializer(
             [new JsonEncoder()],
-            $container->get(Normalizer::class)
+            $container->get(Normalizer::class),
+            $container->get(Denormalizer::class)
         );
     }
 }
