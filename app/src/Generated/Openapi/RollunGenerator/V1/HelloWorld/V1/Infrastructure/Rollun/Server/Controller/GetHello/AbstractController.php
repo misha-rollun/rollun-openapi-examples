@@ -23,8 +23,7 @@ abstract class AbstractController implements Controller
         return new Result(Status::rejected(), null, $error);
     }
 
-    protected function pending(string $taskId, ?int $retryAfter = null
-    ): Result
+    protected function pending(string $taskId, ?int $retryAfter = null): Result
     {
         $taskInfo = new TaskInfo();
         $taskInfo->id = $taskId;
