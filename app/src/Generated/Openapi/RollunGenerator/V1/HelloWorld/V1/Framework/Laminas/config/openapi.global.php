@@ -1,6 +1,6 @@
 <?php
 
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Framework\Laminas\Layer\Openapi\Server\Http\Handler\GetHello\Factory\HandlerFactory;
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Framework\Laminas\Openapi\Server\Http\Handler\GetHello\Factory\HandlerFactory;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Infrastructure\Openapi\Common\Dto\GetHelloQueryParameters;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Infrastructure\Openapi\Common\Dto\GetHelloRequestHeaders;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Infrastructure\Openapi\Server\Http\Handler\GetHello\DefaultErrorHandler;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Framework\Laminas\Layer\Openapi\Server\Http\Handler\GetHello\Factory;
+namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Framework\Laminas\Openapi\Server\Http\Handler\GetHello\Factory;
 
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Infrastructure\Openapi\Server\Http\Handler\GetHello\ErrorHandler;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Infrastructure\Openapi\Server\Http\Handler\GetHello\Handler;
