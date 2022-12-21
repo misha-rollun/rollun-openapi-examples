@@ -1,0 +1,216 @@
+openapi: 3.0.0
+info:
+    version: "1"
+    title: "LongTask"
+    description: Manifest description
+servers:
+    - url: http://server-host/openapi/Articles/v1
+paths:
+    "/articles":
+        post:
+            tags:
+                - Articles
+            operationId: createArticle
+            summary: "Create an article"
+            requestBody:
+                required: true
+                content:
+                    application/vnd.rollun-request+json:
+                        schema:
+                            $ref: '#/components/schemas/ArticlePostRequest'
+            responses:
+                "200":
+                    description: "Article successfully created"
+                    content:
+                        application/vnd.rollun+json:
+                            schema:
+                                $ref: '#/components/schemas/ArticleResult'
+                "202":
+                    description: "Article creation pending"
+                    headers:
+                        ResourceId:
+                            schema:
+                                type: string
+                            description: Task id
+                        Retry-After:
+                            schema:
+                                type: integer
+                            description: Task duration estimate
+                    content:
+                        application/vnd.rollun-long-task+json:
+                            schema:
+                                $ref: '#/components/schemas/LongTaskResult'
+                    links:
+                        GetTaskState:
+                            operationId: getArticleTask
+                            parameters:
+                                id: '$response.body#/data/resource_id'
+                "500":
+                    description: 'Some internal error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ErrorResult'
+    "/articles/{id}":
+        get:
+            tags:
+                - Articles
+            operationId: getArticle
+            summary: 'Get info about specific article'
+            description: "Returns information of article by id"
+            parameters:
+                - in: path
+                  name: id
+                  description: Id of article
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                "200":
+                    description: 'Success'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ArticleResult'
+                "500":
+                    description: 'Some internal error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ErrorResult'
+    "/articles/tasks/{id}":
+        get:
+            tags:
+                - Articles
+            operationId: getArticleTask
+            summary: 'Get info about article task'
+            parameters:
+                -   in: path
+                    name: id
+                    description: Id of task
+                    required: true
+                    schema:
+                        type: string
+            responses:
+                "200":
+                    description: 'Success'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/TaskStateResult'
+                "201":
+                    description: 'Task completed'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ArticleResult'
+                    links:
+                        GetCreatedArticle:
+                            operationId: getArticle
+                            parameters:
+                                id: '$response.body#/data/resource_id'
+                "500":
+                    description: 'Some internal error'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ErrorResult'
+components:
+    schemas:
+        # Basic results components
+        ErrorResult:
+            type: object
+            properties:
+                messages:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/Message"
+            description: "Message field is not required"
+        Message:
+            type: object
+            properties:
+                level:
+                    type: string
+                    enum:
+                        - emergency
+                        - alert
+                        - critical
+                        - error
+                        - warning
+                        - notice
+                        - info
+                type:
+                    type: string
+                    enum:
+                        - UNDEFINED
+                        - LOGGER_MESSAGE
+                    description: >
+                        You can expose this enum for all your errors
+                        UNDEFINED - Any undefined message type
+                        LOGGER_MESSAGE - Same as undefined
+                text:
+                    type: string
+                    description: Message, that describes what went wrong
+
+        LongTaskResult:
+            type: object
+            properties:
+                task:
+                    type: object
+                    properties:
+                        id:
+                            type: string
+        Pending:
+            type: object
+            properties:
+                resource_id:
+                    type: string
+
+        TaskStateResult:
+            allOf:
+                - $ref: '#/components/schemas/SuccessResult'
+            type: object
+            properties:
+                data:
+                    $ref: '#/components/schemas/TaskState'
+
+        TaskState:
+            type: object
+            properties:
+                id:
+                    type: string
+                status:
+                    type: string
+
+        ## One resource result
+        ArticleResult:
+            allOf:
+                - $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/schemas/RollunResponse"
+            properties:
+                data:
+                    $ref: '#/components/schemas/Article'
+
+        ## Body for post request
+        ArticlePostRequest:
+            type: object
+            required:
+                - payload
+            properties:
+                payload:
+                    $ref: "#/components/schemas/ArticlePostRequestPayload"
+        ArticlePostRequestPayload:
+            type: object
+            required:
+                - title
+            properties:
+                title:
+                    type: string
+
+        ## Resource object
+        Article:
+            type: object
+            properties:
+                id:
+                    type: string
+                title:
+                    type: string

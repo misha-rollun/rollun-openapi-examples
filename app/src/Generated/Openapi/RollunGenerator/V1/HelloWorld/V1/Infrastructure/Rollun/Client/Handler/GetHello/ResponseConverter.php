@@ -7,7 +7,7 @@ namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Infrastructure\Roll
 use Generated\Openapi\RollunGenerator\V1\Common\Infrastructure\Rollun\Handler\Status;
 use Generated\Openapi\RollunGenerator\V1\Common\Infrastructure\Rollun\Handler\TaskInfo;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Infrastructure\Openapi\Common\Operation\GetHello\Response;
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Infrastructure\Rollun\Common\Handler\GetHello\Result;
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Infrastructure\Rollun\Common\Controller\GetHello\Result;
 
 class ResponseConverter
 {
