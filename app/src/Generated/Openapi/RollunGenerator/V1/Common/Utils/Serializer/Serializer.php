@@ -9,8 +9,8 @@ class Serializer
     private string $toObject;
 
     public function __construct(
-        /** @var Encoder[] $encoders */
-        private array $encoders,
+        /** @var Coder[] $coders */
+        private array $coders,
         private Normalizer $normalizer,
         private Denormalizer $denormalizer
     )
@@ -56,11 +56,11 @@ class Serializer
         throw new \RuntimeException('Please specify to object or discriminator');
     }
 
-    private function getEncoder(string $contentType): Encoder
+    private function getEncoder(string $contentType): Coder
     {
-        foreach ($this->encoders as $encoder)
+        foreach ($this->coders as $encoder)
         {
-            /** @var Encoder $encoder */
+            /** @var Coder $encoder */
             if ($encoder->isSupport($contentType)) {
                 return $encoder;
             }

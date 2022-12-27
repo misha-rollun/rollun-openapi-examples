@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Generated\Openapi\RollunGenerator\V1\Common\Utils\Serializer;
 
-class JsonEncoder implements Encoder
+class JsonCoder implements Coder
 {
     public function encode(array $array): string
     {
