@@ -10,5 +10,6 @@ use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Common\DTO\HelloWorldResp
 class OpenapiResponse
 {
     public HelloWorldResponse|Error $body;
+    public string $contentType;
     public int $statusCode;
 }
