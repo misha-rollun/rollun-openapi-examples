@@ -36,7 +36,7 @@ class Denormalizer
             $result = new $this->toObject();
             foreach ($properties as $property) {
                 $propertyName = $property->getName();
-                $fromPropertyName = $this->metadata[$this->toObject]['properties'][$propertyName]['name'] ?? $propertyName;
+                $fromPropertyName = $this->metadata[$this->toObject]['properties'][$propertyName]['serializedName'] ?? $propertyName;
                 if (isset($from[$fromPropertyName])) {
                     $result->{$propertyName} = $from[$fromPropertyName];
                 }

@@ -18,7 +18,7 @@ class Normalizer
         foreach ($properties as $property) {
             if ($property->isInitialized($from)) {
                 $propertyName = $property->getName();
-                $toPropertyName = $this->propertiesMapping[$from::class][$propertyName] ?? $propertyName;
+                $toPropertyName = $this->propertiesMapping[$from::class]['properties'][$propertyName]['serializedName'] ?? $propertyName;
                 $result[$toPropertyName] = $this->propertyIsObject($property) ?
                     $this->normalize($from->{$propertyName}) : $from->{$propertyName};
             }
