@@ -44,6 +44,7 @@
     "require": {
         "php": "^7.4 || ~8.0.0 || ~8.1.0",
         "composer/package-versions-deprecated": "^1.10.99",
+        "doctrine/annotations": "^2.0",
         "laminas/laminas-component-installer": "^2.6",
         "laminas/laminas-config-aggregator": "^1.6",
         "laminas/laminas-diactoros": "^2.7",
@@ -52,6 +53,8 @@
         "mezzio/mezzio": "^3.7",
         "mezzio/mezzio-fastroute": "^3.0.3",
         "mezzio/mezzio-helpers": "^5.7",
+        "phpdocumentor/reflection-docblock": "^5.3",
+        "symfony/property-access": "^6.0",
         "symfony/serializer": "^6.0"
     },
     "require-dev": {
