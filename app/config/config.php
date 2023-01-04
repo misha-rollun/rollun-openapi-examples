@@ -25,7 +25,7 @@ $aggregator = new ConfigAggregator([
     \Mezzio\Router\ConfigProvider::class,
     \Laminas\Diactoros\ConfigProvider::class,
 
-    \Generated\Openapi\RollunGenerator\V1\Common\Framework\Laminas\ConfigProvider::class,
+    \Generated\Openapi\RollunGenerator\V1\Common\ConfigProvider::class,
 
     // Swoole config to overwrite some services (if installed)
     class_exists(\Mezzio\Swoole\ConfigProvider::class)

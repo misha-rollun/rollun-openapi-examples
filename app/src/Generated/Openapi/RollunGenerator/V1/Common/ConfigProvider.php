@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Generated\Openapi\RollunGenerator\V1\Common\Framework\Laminas;
+namespace Generated\Openapi\RollunGenerator\V1\Common;
 
 use Laminas\ConfigAggregator\PhpFileProvider;
 

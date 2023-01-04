@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Generated\Openapi\RollunGenerator\V1\Common\Framework\Laminas\Utils\Serializer\Factory;
+namespace Generated\Openapi\RollunGenerator\V1\Common\Utils\Serializer\Factory;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Generated\Openapi\RollunGenerator\V1\Common\Utils\Serializer\Serializer;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Generated\Openapi\RollunGenerator\V1\Common\Framework\Laminas\Utils\Query\Serializer\Factory;
+namespace Generated\Openapi\RollunGenerator\V1\Common\Utils\Query\Serializer\Factory;
 
 use Generated\Openapi\RollunGenerator\V1\Common\Utils\Query\Serializer\QuerySerializer;
 use Generated\Openapi\RollunGenerator\V1\Common\Utils\Query\Serializer\Strategy\FormNoExplode;
