@@ -33,9 +33,7 @@ class RequestConverter
                 ]
             ]
         ]);
-        $openapiRequest->query = $this->serializer
-            ->toObject(GetHelloQueryParameters::class)
-            ->denormalize($queryArray);
+        $openapiRequest->query = $this->serializer->denormalize($queryArray, GetHelloQueryParameters::class);
         return $openapiRequest;
     }
 }
