@@ -9,62 +9,39 @@ class Serializer
     private string $toObject;
 
     public function __construct(
-        /** @var Coder[] $coders */
-        private array $coders,
-        private Normalizer $normalizer,
-        private Denormalizer $denormalizer
+        private $contentTypeToFormatMapping,
+        private \Symfony\Component\Serializer\Serializer $serializer,
     )
     {
     }
 
-    public function serialize(object $object, string $contentType): string
+    public function serialize(object $data, string $contentType): string
     {
-        $encoder = $this->getEncoder($contentType);
-        $array = $this->normalize($object);
-        return $encoder->encode($array);
+        $format = $this->getFormat($contentType);
+        return $this->serializer->serialize($data, $format);
     }
 
-    public function deserialize(string $from, string $contentType)
+    public function deserialize(string $from, string $to, string $contentType)
     {
-        $decoder =  $this->getEncoder($contentType);
-        $array = $decoder->decode($from);
-        return $this->denormalize($array);
+        $format =  $this->getFormat($contentType);
+        return $this->serializer->deserialize($from, $to, $format);
     }
 
     public function normalize(object $from): array
     {
-        return $this->normalizer->normalize($from);
+        return $this->serializer->normalize($from);
     }
 
-    public function withDiscriminator(string $field, array $mapping): self
+    public function denormalize(array $from, string $to): object
     {
-        throw new \Exception('Not implemented');
+        return $this->serializer->denormalize($from, $to);
     }
 
-    public function toObject(string $className): self
+    private function getFormat(string $contentType): string
     {
-        $clone = clone $this;
-        $clone->toObject = $className;
-        return $clone;
-    }
-
-    public function denormalize(array $from): object
-    {
-        if ($this->toObject) {
-            return $this->denormalizer->toObject($this->toObject)->denormalize($from);
+        if (isset($this->contentTypeToFormatMapping[$contentType])) {
+            return $this->contentTypeToFormatMapping[$contentType];
         }
-        throw new \RuntimeException('Please specify to object or discriminator');
-    }
-
-    private function getEncoder(string $contentType): Coder
-    {
-        foreach ($this->coders as $encoder)
-        {
-            /** @var Coder $encoder */
-            if ($encoder->isSupport($contentType)) {
-                return $encoder;
-            }
-        }
-        throw new \RuntimeException('No encoders found to support ' . $contentType);
+        throw new \RuntimeException('No format found for ' . $contentType);
     }
 }
