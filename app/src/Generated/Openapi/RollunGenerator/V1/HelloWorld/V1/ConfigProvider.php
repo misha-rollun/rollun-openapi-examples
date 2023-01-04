@@ -10,21 +10,6 @@ class ConfigProvider
 {
     public function __invoke()
     {
-        return [
-            'serializer' => [
-                'metadata' => [
-                    GetHelloQueryParameters::class => [
-                        'properties' => [
-                            // назва поля в об'єкті
-                            'name' => [
-                                // назва поля в маніфесті
-                                'serializedName' => 'name'
-                            ]
-                        ]
-                    ],
-                    // тут повинна бути описана кожна dto з .../Common/Dto
-                ]
-            ]
-        ];
+        return [];
     }
 }

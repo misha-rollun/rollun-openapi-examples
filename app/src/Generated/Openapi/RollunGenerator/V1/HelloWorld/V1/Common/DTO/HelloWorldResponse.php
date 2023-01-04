@@ -16,16 +16,6 @@ class HelloWorldResponse
      */
     public array $warnings;
 
-    public function hasMetadata(): bool
-    {
-        return $this->isInitialized('metadata');
-    }
-
-    public function hasWarnings(): bool
-    {
-        return $this->isInitialized('warnings');
-    }
-
     private function isInitialized(string $property): bool
     {
         $rp = new ReflectionProperty(self::class, $property);

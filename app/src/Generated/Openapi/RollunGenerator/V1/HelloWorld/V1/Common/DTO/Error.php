@@ -14,16 +14,4 @@ class Error
      * @var Warning[]
      */
     public array $warnings;
-
-    public function hasWarnings(): bool
-    {
-        return $this->isInitialized('warnings');
-    }
-
-    private function isInitialized(string $property): bool
-    {
-        $rp = new ReflectionProperty(self::class, $property);
-        $rp->setAccessible(true);
-        return $rp->isInitialized($this);
-    }
 }
