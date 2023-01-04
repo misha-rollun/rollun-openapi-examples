@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Framework\Laminas\Http\Server\RegisterRoutes;
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Server\RegisterRoutes;
 use Mezzio\Application;
 use Mezzio\MiddlewareFactory;
 use Psr\Container\ContainerInterface;
