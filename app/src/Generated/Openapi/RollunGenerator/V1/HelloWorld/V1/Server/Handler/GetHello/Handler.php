@@ -7,8 +7,9 @@ namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Server\Handler\GetH
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Server\Controller\GetHello\Controller;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-class Handler implements \Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Common\Handler\GetHello\Handler
+class Handler implements RequestHandlerInterface
 {
     public function __construct(
         private RequestConverter $requestConverter,
