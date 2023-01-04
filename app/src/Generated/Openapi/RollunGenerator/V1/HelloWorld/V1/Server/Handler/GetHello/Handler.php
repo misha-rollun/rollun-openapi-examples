@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Server\Handler\GetHello;
 
+use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Server\Controller\GetHello\AbstractController;
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Server\Controller\GetHello\Controller;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -13,7 +14,7 @@ class Handler implements RequestHandlerInterface
 {
     public function __construct(
         private RequestConverter $requestConverter,
-        private Controller $controller,
+        private AbstractController $controller,
         private ResponseConverter $responseConverter,
     )
     {
