@@ -1,0 +1,61 @@
+openapi: 3.0.3
+info:
+  title: HelloWorld
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/openapi/hello-world/v1
+x-servers:
+  - name: Localhost
+    urls:
+      - http://localhost:8080/openapi/hello-world/v1
+paths:
+  "/hello":
+    get:
+      parameters:
+        - in: query
+          name: name
+          required: true
+          style: form
+          explode: false
+          schema:
+            type: string
+            description: First name
+      responses:
+        200:
+          description: Success response
+          content:
+            application/vnd.rollun+json:
+              schema:
+                $ref: "#/components/schemas/HelloWorldResponse"
+        400:
+          description: Bad request
+          content:
+            application/vnd.rollun-error+json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/vnd.rollun-error+json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/schemas/Error"
+        503:
+          description: Service Unavailable
+          content:
+            application/vnd.rollun-error+json:
+              schema:
+                $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/schemas/Error"
+components:
+  schemas:
+    HelloWorldResponse:
+      type: object
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/schemas/RollunResponse"
+      properties:
+        data:
+          $ref: "#/components/schemas/HelloWorld"
+
+    HelloWorld:
+      type: string
+      description: Format "Hello, {name}!"
+      example: "Hello, John!"

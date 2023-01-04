@@ -12,17 +12,22 @@ use Psr\Http\Server\RequestHandlerInterface;
 class Handler implements RequestHandlerInterface
 {
     public function __construct(
+        private RequestValidator $requestValidator,
         private RequestConverter $requestConverter,
         private AbstractController $controller,
         private ResponseConverter $responseConverter,
+        private ResponseValidator $responseValidator,
     )
     {
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        $this->requestValidator->validate($request);
         $openapiRequest = $this->requestConverter->convert($request);
         $openapiResponse = $this->controller->handle($openapiRequest);
-        return $this->responseConverter->convert($openapiResponse);
+        $response = $this->responseConverter->convert($openapiResponse);
+        $this->responseValidator->validate($response);
+        return $response;
     }
 }

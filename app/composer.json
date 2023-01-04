@@ -50,6 +50,7 @@
         "laminas/laminas-diactoros": "^2.7",
         "laminas/laminas-servicemanager": "^3.4",
         "laminas/laminas-stdlib": "^3.6",
+        "league/openapi-psr7-validator": "^0.18.0",
         "mezzio/mezzio": "^3.7",
         "mezzio/mezzio-fastroute": "^3.0.3",
         "mezzio/mezzio-helpers": "^5.7",
