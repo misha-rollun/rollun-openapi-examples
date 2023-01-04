@@ -44,17 +44,6 @@ class HomePageHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $from = new GetHelloQueryParameters();
-        $reflection = new \ReflectionClass($from);
-        $properties = $reflection->getProperties(\ReflectionProperty::IS_PUBLIC);
-        $result = [];
-        foreach ($properties as $property) {
-            $propertyName = $property->getName();
-            var_dump($propertyName, $property->getType()->getName());
-//            $result[$propertyName] = $from->{$propertyName};
-        }
-        die;
-
         $data = [];
 
         switch ($this->containerName) {
