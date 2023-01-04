@@ -52,6 +52,7 @@ class Contact
     public string $value;
 }
 
+// https://qna.habr.com/q/681856
 $reflectionExtractor = new ReflectionExtractor();
 $phpDocExtractor = new PhpDocExtractor();
 $propertyTypeExtractor = new PropertyInfoExtractor([$reflectionExtractor], [$phpDocExtractor, $reflectionExtractor], [$phpDocExtractor], [$reflectionExtractor], [$reflectionExtractor]);
