@@ -66,5 +66,6 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
         'webhook'
     );
 
-    (new RegisterRoutes($app))->register();
+    $routesRegister = $container->get(\Generated\Openapi\RollunGenerator\V1\Common\Server\RoutesRegister::class);
+    $routesRegister->register();
 };
