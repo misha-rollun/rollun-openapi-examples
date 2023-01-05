@@ -1,24 +1,27 @@
 <?php
+/**
+ * @copyright Copyright © 2014 Rollun LC (http://rollun.com/)
+ * @license LICENSE.md New BSD License
+ */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 use Generated\Openapi\RollunGenerator\V1\HelloWorld\V1\Server\RegisterRoutes;
+use Psr\Container\ContainerInterface;
+use rollun\callback\Middleware\WebhookMiddleware;
+use rollun\datastore\Middleware\DataStoreApi;
 use Mezzio\Application;
 use Mezzio\MiddlewareFactory;
-use Psr\Container\ContainerInterface;
+use Mezzio\Router\Route;
 
 /**
- * FastRoute route configuration
- *
- * @see https://github.com/nikic/FastRoute
- *
  * Setup routes with a single request method:
  *
  * $app->get('/', App\Handler\HomePageHandler::class, 'home');
  * $app->post('/album', App\Handler\AlbumCreateHandler::class, 'album.create');
- * $app->put('/album/{id:\d+}', App\Handler\AlbumUpdateHandler::class, 'album.put');
- * $app->patch('/album/{id:\d+}', App\Handler\AlbumUpdateHandler::class, 'album.patch');
- * $app->delete('/album/{id:\d+}', App\Handler\AlbumDeleteHandler::class, 'album.delete');
+ * $app->put('/album/:id', App\Handler\AlbumUpdateHandler::class, 'album.put');
+ * $app->patch('/album/:id', App\Handler\AlbumUpdateHandler::class, 'album.patch');
+ * $app->delete('/album/:id', App\Handler\AlbumDeleteHandler::class, 'album.delete');
  *
  * Or with multiple request methods:
  *
@@ -33,15 +36,35 @@ use Psr\Container\ContainerInterface;
  * $app->route(
  *     '/contact',
  *     App\Handler\ContactHandler::class,
- *     Mezzio\Router\Route::HTTP_METHOD_ANY,
+ *     Zend\Expressive\Router\Route::HTTP_METHOD_ANY,
  *     'contact'
  * );
+ *
+ * @param Application $app
+ * @param MiddlewareFactory $factory
+ * @param ContainerInterface $container
+ * @return void
  */
+return function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
+    $app->get(
+        '/',
+        App\Handler\HomePageHandler::class,
+        'home-page'
+    );
 
-return static function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
-    $app->get('/', App\Handler\HomePageHandler::class, 'home');
-    $app->get('/api/ping', App\Handler\PingHandler::class, 'api.ping');
+    $app->route(
+        '/api/datastore[/{resourceName}[/{id}]]',
+        DataStoreApi::class,
+        ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+        DataStoreApi::class
+    );
+
+    $app->route(
+        '/api/webhook[/{resourceName}]',
+        WebhookMiddleware::class,
+        Route::HTTP_METHOD_ANY,
+        'webhook'
+    );
 
     (new RegisterRoutes($app))->register();
-
 };

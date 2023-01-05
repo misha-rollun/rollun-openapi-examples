@@ -1,13 +1,17 @@
 <?php
+/**
+ * @copyright Copyright © 2014 Rollun LC (http://rollun.com/)
+ * @license LICENSE.md New BSD License
+ */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App;
 
 /**
  * The configuration provider for the App module
  *
- * @see https://docs.laminas.dev/laminas-component-installer/
+ * @see https://docs.zendframework.com/zend-component-installer/
  */
 class ConfigProvider
 {
@@ -16,12 +20,12 @@ class ConfigProvider
      *
      * To add a bit of a structure, each section is defined in a separate
      * method which returns an array with its configuration.
+     *
      */
     public function __invoke(): array
     {
         return [
             'dependencies' => $this->getDependencies(),
-            'templates'    => $this->getTemplates(),
         ];
     }
 
@@ -32,24 +36,7 @@ class ConfigProvider
     {
         return [
             'invokables' => [
-                Handler\PingHandler::class => Handler\PingHandler::class,
-            ],
-            'factories'  => [
-                Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
-            ],
-        ];
-    }
-
-    /**
-     * Returns the templates configuration
-     */
-    public function getTemplates(): array
-    {
-        return [
-            'paths' => [
-                'app'    => ['templates/app'],
-                'error'  => ['templates/error'],
-                'layout' => ['templates/layout'],
+                Handler\HomePageHandler::class => Handler\HomePageHandler::class,
             ],
         ];
     }
