@@ -10,7 +10,7 @@ services:
     depends_on:
       - php-fpm
   php-fpm:
-    image: maxrollundev/php-fpm-8.0
+    image: maxrollundev/php-fpm-dev-8.0
     volumes:
       - ./app:/var/www/app
     working_dir: /var/www/app
