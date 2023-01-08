@@ -4,10 +4,6 @@ info:
   version: 1.0.0
 servers:
   - url: http://localhost:8080/openapi/hello-world/v1
-x-servers:
-  - name: Localhost
-    urls:
-      - http://localhost:8080/openapi/hello-world/v1
 paths:
   "/hello":
     get:

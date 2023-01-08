@@ -9,7 +9,7 @@ return [
                 "v1" => [
                     "routes" => [
                         [
-                            'path' => '/opeanapi/hello-world/v1/hello',
+                            'path' => '/openapi/hello-world/v1/hello',
                             'method' => 'GET',
                             'handler' => Handler::class
                         ]
