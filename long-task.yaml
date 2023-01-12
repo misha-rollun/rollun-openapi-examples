@@ -28,10 +28,6 @@ paths:
                 "202":
                     description: "Article creation pending"
                     headers:
-                        ResourceId:
-                            schema:
-                                type: string
-                            description: Task id
                         Retry-After:
                             schema:
                                 type: integer
@@ -39,18 +35,13 @@ paths:
                     content:
                         application/vnd.rollun-long-task+json:
                             schema:
-                                $ref: '#/components/schemas/LongTaskResult'
-                    links:
-                        GetTaskState:
-                            operationId: getArticleTask
-                            parameters:
-                                id: '$response.body#/data/resource_id'
+                                $ref: '#/components/schemas/ArticleLongTaskResult'
                 "500":
                     description: 'Some internal error'
                     content:
-                        application/json:
+                        application/vnd.rollun-error+json:
                             schema:
-                                $ref: '#/components/schemas/ErrorResult'
+                                $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/schemas/Error"
     "/articles/{id}":
         get:
             tags:
@@ -69,21 +60,21 @@ paths:
                 "200":
                     description: 'Success'
                     content:
-                        application/json:
+                        application/vnd.rollun+json:
                             schema:
                                 $ref: '#/components/schemas/ArticleResult'
                 "500":
                     description: 'Some internal error'
                     content:
-                        application/json:
+                        application/vnd.rollun-error+json:
                             schema:
-                                $ref: '#/components/schemas/ErrorResult'
-    "/articles/tasks/{id}":
+                                $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/schemas/Error"
+    "/articles/actions/post/{id}":
         get:
             tags:
                 - Articles
-            operationId: getArticleTask
-            summary: 'Get info about article task'
+            operationId: getArticlePostTask
+            summary: 'Get info about article creation task'
             parameters:
                 -   in: path
                     name: id
@@ -95,92 +86,59 @@ paths:
                 "200":
                     description: 'Success'
                     content:
-                        application/json:
+                        application/vnd.rollun-long-task+json:
                             schema:
-                                $ref: '#/components/schemas/TaskStateResult'
-                "201":
-                    description: 'Task completed'
+                                $ref: '#/components/schemas/ArticleLongTaskResult'
+                "303":
+                    description: "Task completed"
                     content:
-                        application/json:
+                        application/vnd.rollun-long-task+json:
                             schema:
-                                $ref: '#/components/schemas/ArticleResult'
-                    links:
-                        GetCreatedArticle:
-                            operationId: getArticle
-                            parameters:
-                                id: '$response.body#/data/resource_id'
+                                $ref: '#/components/schemas/ArticleCompletedLongTaskResult'
                 "500":
                     description: 'Some internal error'
                     content:
-                        application/json:
+                        application/vnd.rollun-error+json:
                             schema:
-                                $ref: '#/components/schemas/ErrorResult'
+                                $ref: "https://raw.githubusercontent.com/misha-rollun/openapi-common/master/src/openapi/common/v1/common-v1.yaml#/components/schemas/Error"
 components:
     schemas:
-        # Basic results components
-        ErrorResult:
-            type: object
-            properties:
-                messages:
-                    type: array
-                    items:
-                        $ref: "#/components/schemas/Message"
-            description: "Message field is not required"
-        Message:
-            type: object
-            properties:
-                level:
-                    type: string
-                    enum:
-                        - emergency
-                        - alert
-                        - critical
-                        - error
-                        - warning
-                        - notice
-                        - info
-                type:
-                    type: string
-                    enum:
-                        - UNDEFINED
-                        - LOGGER_MESSAGE
-                    description: >
-                        You can expose this enum for all your errors
-                        UNDEFINED - Any undefined message type
-                        LOGGER_MESSAGE - Same as undefined
-                text:
-                    type: string
-                    description: Message, that describes what went wrong
-
-        LongTaskResult:
+        ArticleCompletedLongTaskResult:
             type: object
             properties:
                 task:
-                    type: object
-                    properties:
-                        id:
-                            type: string
-        Pending:
+                    $ref: '#/components/schemas/ArticleCompletedLongTask'
+        ArticleLongTaskResult:
             type: object
             properties:
-                resource_id:
-                    type: string
-
-        TaskStateResult:
+                task:
+                    $ref: '#/components/schemas/ArticleLongTask'
+        ArticleCompletedLongTask:
             allOf:
-                - $ref: '#/components/schemas/SuccessResult'
+                - $ref: '#/components/schemas/CompletedLongTask'
             type: object
-            properties:
-                data:
-                    $ref: '#/components/schemas/TaskState'
+        ArticleLongTask:
+          allOf:
+            - $ref: '#/components/schemas/LongTask'
+          type: object
 
-        TaskState:
+        CompletedLongTask:
+            allOf:
+                - $ref: '#/components/schemas/LongTask'
             type: object
+            required:
+                - result
             properties:
-                id:
+                result:
                     type: string
-                status:
-                    type: string
+        LongTask:
+          type: object
+          required:
+              - id
+          properties:
+            id:
+              type: string
+
 
         ## One resource result
         ArticleResult:
